@@ -19,8 +19,6 @@ from defacer_utils import resize_img, dice_coefficient, resample_image, pre_proc
 
 def deface_3D_MRI():
 
-    error_checking() 
-
     if len(sys.argv) < 2:
         print('----------------------------------------------------------------------------------------------------')
         print("usage: Please specify the filepath of a MRI image for defacing....(e.g deepdefacer <path of MRI>")
@@ -43,8 +41,8 @@ def deface_3D_MRI():
 
     MRI_image_shape = nib.load(MRI_image_path).get_data().shape
 
-    if np.squeeze(MRI_input_shape) != 3: 
-         print('------------------------------------------------------------------------')
+    if len(np.squeeze(MRI_image_shape)) != 3: 
+        print('------------------------------------------------------------------------')
         print("ERROR: Unable to deface MRI: Please ensure that input dimensions are in 3D.")
         print('------------------------------------------------------------------------')
 
