@@ -1,6 +1,7 @@
 import argparse
 import sys 
 import os
+import pdb
 
 import numpy as np 
 import nibabel as nib
@@ -16,7 +17,7 @@ from defacer_utils import resize_img, dice_coefficient, resample_image, pre_proc
 
 def deface_3D_MRI():
 
-    if len(sys.argv) < 1:
+    if len(sys.argv) < 2:
         print "usage: Please specify the filepath of a MRI image for defacing....(e.g deepdefacer <path of MRI>"
         sys.exit(1) 
 
