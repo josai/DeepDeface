@@ -3,10 +3,10 @@ from setuptools import setup, find_packages
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-setuptools.setup(
+setup(
     name="deepdefacer",
     packages=find_packages(),
-    version="0.0.1",
+    version="0.0.2",
     author="Anish Khazane",
     author_email="akhazane@stanford.edu",
     description="Automatic Removal of Facial Features from MRI Images",
@@ -29,5 +29,9 @@ setuptools.setup(
         "tensorflow-gpu==1.8.0",
         "nilearn",
         "nibabel",
+        "sklearn",
+        "scipy",
+        "ipython" 
+        "matplotlib"
     ]
 )
