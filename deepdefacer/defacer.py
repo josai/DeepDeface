@@ -46,7 +46,6 @@ def deface_3D_MRI():
 
     print('-------------------------------------------------')
     print('Masking %s ....' % (MRI_image_path))
-    print('-------------------------------------------------')
 
 
     mask_prediction = deepdeface_model.predict(MRI_image_data) 
@@ -66,7 +65,6 @@ def deface_3D_MRI():
 
 
     print('Completed! Saving to %s...' % (output_file))
-    print('-------------------------------------------------')
 
     nib.save(masked_image_resampled, output_file)
 
