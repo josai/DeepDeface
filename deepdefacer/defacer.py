@@ -1,7 +1,6 @@
 import argparse
 import sys 
 import os
-import pdb
 
 import numpy as np 
 import nibabel as nib
@@ -25,7 +24,6 @@ def deface_3D_MRI():
         print("ERROR: Could not find an available GPU on your system. Please check that your GPU drivers (cudaNN, etc) are up to date and accessible.")
         sys.exit(1) 
 
-    pdb.set_trace() 
     MRI_image_path = sys.argv[1]
     if '.nii' not in MRI_image_path or '.nii.gz' not in MRI_image_path:
         print("ERROR: Please ensure that input MRI file is in .nii or .nii.gz format")
