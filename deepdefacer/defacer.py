@@ -65,13 +65,11 @@ def deface_3D_MRI():
     output_file = os.path.splitext(os.path.splitext(os.path.basename(MRI_image_path))[0])[0] + '_defaced.nii.gz'
 
 
-    print('-------------------------------------------------')
     print('Completed! Saving to %s...' % (output_file))
     print('-------------------------------------------------')
 
     nib.save(masked_image_resampled, output_file)
 
-    print('----------')
     print('Saved.') 
     print('----------')
 
