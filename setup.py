@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 setup(
     name="deepdefacer",
     packages=find_packages(),
-    version="0.0.2",
+    version="0.0.5",
     author="Anish Khazane",
     author_email="akhazane@stanford.edu",
     description="Automatic Removal of Facial Features from MRI Images",
