@@ -13,7 +13,7 @@ except:
     print('ERROR: Failed to initialize tensorflow-gpu and Keras. Please ensure that this module is installed and that a GPU is ready accessible.')
     sys.exit(1)
 
-from defacer_utils import resize_img, dice_coefficient, resample_img, pre_process_image, get_available_gpus
+from defacer_utils import resize_img, dice_coefficient, resample_image, pre_process_image, get_available_gpus
 
 def deface_3D_MRI():
 
@@ -38,7 +38,7 @@ def deface_3D_MRI():
 
     deepdeface_model = load_model('deepdefacer/model.hdf5', custom_objects={'dice_coefficient': dice_coefficient})
 
-    print('Masking %s ....' % (MRI_image))
+    print('Masking %s ....' % (MRI_image_path))
 
     mask_prediction = deepdeface_model.predict(MRI_image_data) 
 
@@ -49,11 +49,11 @@ def deface_3D_MRI():
 
     masked_image = np.multiply(MRI_unnormalized_data, mask_prediction)
 
-    masked_image_save = nib.Nifti1Image(masked_image, nib.load(MRI_image).affine)
+    masked_image_save = nib.Nifti1Image(masked_image, nib.load(MRI_image_path).affine)
  
     masked_image_resampled = resample_image(masked_image_save, target_shape=MRI_image_shape, get_nifti=True)
 
-    output_file = os.path.splitext(os.path.splitext(os.path.basename(MRI_image))[0])[0] + '_defaced.nii.gz'
+    output_file = os.path.splitext(os.path.splitext(os.path.basename(MRI_image_path))[0])[0] + '_defaced.nii.gz'
 
 
     print('Completed! Saving to %s...' % (output_file))
