@@ -13,7 +13,7 @@ except:
     print('ERROR: Failed to initialize tensorflow-gpu and Keras. Please ensure that this module is installed and that a GPU is ready accessible.')
     sys.exit(1)
 
-from defacer_utils import resize_img, dice_coefficient, resample_img, pre_process_image, get_available_gpus
+from defacer_utils import resize_img, dice_coefficient, resample_image, pre_process_image, get_available_gpus
 
 def deface_3D_MRI():
 
