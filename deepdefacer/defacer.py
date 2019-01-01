@@ -1,7 +1,6 @@
 import argparse
 import sys 
 import os
-import pdb
 
 import numpy as np 
 import nibabel as nib
@@ -10,7 +9,9 @@ try:
     from keras import backend as K
     from keras.models import *
 except:
+    print('---------------------------------------------------------------------------------------------------------------------------------------')
     print('ERROR: Failed to initialize tensorflow-gpu and Keras. Please ensure that this module is installed and that a GPU is ready accessible.')
+    print('---------------------------------------------------------------------------------------------------------------------------------------')
     sys.exit(1)
 
 from defacer_utils import resize_img, dice_coefficient, resample_image, pre_process_image, get_available_gpus
@@ -18,16 +19,22 @@ from defacer_utils import resize_img, dice_coefficient, resample_image, pre_proc
 def deface_3D_MRI():
 
     if len(sys.argv) < 2:
-        print "usage: Please specify the filepath of a MRI image for defacing....(e.g deepdefacer <path of MRI>"
+        print('----------------------------------------------------------------------------------------------------')
+        print("usage: Please specify the filepath of a MRI image for defacing....(e.g deepdefacer <path of MRI>")
+        print('----------------------------------------------------------------------------------------------------')
         sys.exit(1) 
 
     if not get_available_gpus:
+        print('---------------------------------------------------------------------------------------------------------------------------------------')
         print("ERROR: Could not find an available GPU on your system. Please check that your GPU drivers (cudaNN, etc) are up to date and accessible.")
+        print('---------------------------------------------------------------------------------------------------------------------------------------')
         sys.exit(1) 
 
     MRI_image_path = sys.argv[1]
     if '.nii' not in MRI_image_path or '.nii.gz' not in MRI_image_path:
+        print('------------------------------------------------------------------------')
         print("ERROR: Please ensure that input MRI file is in .nii or .nii.gz format")
+        print('------------------------------------------------------------------------')
 
     print('Preproessing input MRI image...')
 
@@ -37,7 +44,10 @@ def deface_3D_MRI():
 
     deepdeface_model = load_model('deepdefacer/model.hdf5', custom_objects={'dice_coefficient': dice_coefficient})
 
+    print('-------------------------------------------------')
     print('Masking %s ....' % (MRI_image_path))
+    print('-------------------------------------------------')
+
 
     mask_prediction = deepdeface_model.predict(MRI_image_data) 
 
@@ -55,11 +65,15 @@ def deface_3D_MRI():
     output_file = os.path.splitext(os.path.splitext(os.path.basename(MRI_image_path))[0])[0] + '_defaced.nii.gz'
 
 
+    print('-------------------------------------------------')
     print('Completed! Saving to %s...' % (output_file))
+    print('-------------------------------------------------')
 
     nib.save(masked_image_resampled, output_file)
 
+    print('----------')
     print('Saved.') 
+    print('----------')
 
 
 
