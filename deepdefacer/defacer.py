@@ -36,7 +36,7 @@ def deface_3D_MRI():
 
     MRI_image_data, MRI_unnormalized_data = pre_process_image(MRI_image_path)
 
-    deepdeface_model = load_model('model.hdf5', custom_objects={'dice_coefficient': dice_coefficient})
+    deepdeface_model = load_model('deepdefacer/model.hdf5', custom_objects={'dice_coefficient': dice_coefficient})
 
     print('Masking %s ....' % (MRI_image))
 
