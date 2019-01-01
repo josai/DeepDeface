@@ -1,3 +1,1 @@
-# DeepDeface
-
-This is a automatic facial region removal tool that utilizes computer vision and deep learning tools to mask MRI images.
+Automatic Removal of Facial Features in 3D MRI Scans.
