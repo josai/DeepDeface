@@ -31,7 +31,7 @@ setup(
         "nibabel",
         "sklearn",
         "scipy",
-        "ipython" 
+        "ipython",
         "matplotlib"
     ]
 )

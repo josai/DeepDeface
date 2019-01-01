@@ -13,17 +13,11 @@ except:
     print('ERROR: Failed to initialize tensorflow-gpu and Keras. Please ensure that this module is installed and that a GPU is ready accessible.')
     sys.exit(1)
 
-from defacer_utils import resize_img, dice_coefficient, resample_img, pre_process_img, get_available_gpus
+from defacer_utils import resize_img, dice_coefficient, resample_img, pre_process_image, get_available_gpus
 
 def deface_3D_MRI():
 
-    parser = argparse.ArgumentParser(description='Process input images')
-    parser.add_argument("input_file")
-
-
-    args = parser.parse_args()
-
-    if len(args) < 1:
+    if len(sys.argv) < 1:
         print "usage: Please specify the filepath of a MRI image for defacing....(e.g deepdefacer <path of MRI>"
         sys.exit(1) 
 
@@ -32,9 +26,9 @@ def deface_3D_MRI():
         sys.exit(1) 
 
     pdb.set_trace() 
-    MRI_image_path = args.input_file
-    filename, file_extension = os.path.splitext(args.input_file) 
-
+    MRI_image_path = sys.argv[1]
+    if '.nii' not in MRI_image_path or '.nii.gz' not in MRI_image_path:
+        print("ERROR: Please ensure that input MRI file is in .nii or .nii.gz format")
 
     print('Preproessing input MRI image...')
 
