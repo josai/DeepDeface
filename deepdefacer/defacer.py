@@ -10,13 +10,16 @@ try:
     from keras.models import *
 except:
     print('---------------------------------------------------------------------------------------------------------------------------------------')
-    print('ERROR: Failed to initialize tensorflow-gpu and Keras. Please ensure that this module is installed and that a GPU is ready accessible.')
+    print('ERROR: Failed to initialize tensorflow-gpu and Keras. Please ensure that this module is installed and a GPU is readily accessible.')
     print('---------------------------------------------------------------------------------------------------------------------------------------')
     sys.exit(1)
 
 from defacer_utils import resize_img, dice_coefficient, resample_image, pre_process_image, get_available_gpus
 
+
 def deface_3D_MRI():
+
+    error_checking() 
 
     if len(sys.argv) < 2:
         print('----------------------------------------------------------------------------------------------------')
@@ -39,6 +42,12 @@ def deface_3D_MRI():
     print('Preproessing input MRI image...')
 
     MRI_image_shape = nib.load(MRI_image_path).get_data().shape
+
+    if np.squeeze(MRI_input_shape) != 3: 
+         print('------------------------------------------------------------------------')
+        print("ERROR: Unable to deface MRI: Please ensure that input dimensions are in 3D.")
+        print('------------------------------------------------------------------------')
+
 
     MRI_image_data, MRI_unnormalized_data = pre_process_image(MRI_image_path)
 

@@ -7,7 +7,7 @@ try:
     from tensorflow.python.client import device_lib
 except:
     print('---------------------------------------------------------------------------------------------------------------------------------------')
-    print('ERROR: Failed to initialize tensorflow-gpu and Keras. Please ensure that this module is installed and that a GPU is ready accessible.')
+    print('ERROR: Failed to initialize tensorflow-gpu and Keras. Please ensure that this module is installed and a GPU is readily accessible.')
     print('---------------------------------------------------------------------------------------------------------------------------------------')
     sys.exit(1)
 
